@@ -1,24 +1,24 @@
 <template>
-  <TodoBox>
-    <div id="add-todo">
+  <NoteBox>
+    <div id="add-note">
       <div class="icon">
         <font-awesome-icon icon="plus" />
       </div>
-      <input placeholder="Add Todo" />
+      <input placeholder="Add note" />
     </div>
-  </TodoBox>
+  </NoteBox>
 </template>
 <script>
-import TodoBox from "./TodoBox";
+import NoteBox from "./NoteBox";
 export default {
-  name: "AddTodo",
+  name: "AddNote",
   components: {
-    TodoBox,
+    NoteBox,
   },
 };
 </script>
 <style scoped>
-#add-todo {
+#add-note {
   display: flex;
 }
 .icon {

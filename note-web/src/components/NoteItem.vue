@@ -1,6 +1,6 @@
 <template>
-  <TodoBox v-bind:isDanger="isExpire">
-    <div id="todo-item">
+  <NoteBox v-bind:isDanger="isExpire">
+    <div id="note-item">
       <div class="item-date">
         <p>22</p>
         <span>May 20</span>
@@ -12,12 +12,12 @@
         <i>remove</i>
       </div>
     </div>
-  </TodoBox>
+  </NoteBox>
 </template>
 <script>
-import TodoBox from "./TodoBox";
+import NoteBox from "./NoteBox";
 export default {
-  name: "TodoItem",
+  name: "NoteItem",
   props: {
     isExpire: {
       type: Boolean,
@@ -25,12 +25,12 @@ export default {
     },
   },
   components: {
-    TodoBox,
+    NoteBox,
   },
 };
 </script>
 <style scoped>
-  #todo-item {
+  #note-item {
     display: flex;
     flex-direction: row;
   }

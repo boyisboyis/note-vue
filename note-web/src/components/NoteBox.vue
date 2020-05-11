@@ -1,5 +1,5 @@
 <template>
-  <div class="todo-box">
+  <div class="note-box">
     <div class="highlight" :class="{'isDanger': isDanger}"></div>
     <div class="container">
       <slot></slot>
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: "TodoBox",
+  name: "NoteBox",
   props: {
     isDanger: {
       type: Boolean,
@@ -21,7 +21,7 @@ export default {
 };
 </script>
 <style scoped>
-.todo-box {
+.note-box {
   width: 520px;
   /* padding: 24px 40px; */
   background: #ffffff;
