@@ -1,19 +1,8 @@
 <template>
   <div id="app">
-    <Note></Note>
+    <router-view />
   </div>
 </template>
-
-<script>
-import Note from './components/Note.vue'
-
-export default {
-  name: 'App',
-  components: {
-    Note
-  }
-}
-</script>
 
 <style>
 * {

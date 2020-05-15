@@ -10,6 +10,7 @@
 </template>
 <script>
 import NoteBox from "./NoteBox";
+import NoteService from '@/service/note.service';
 export default {
   name: "AddNote",
   data: function() {
@@ -25,8 +26,10 @@ export default {
       if (!this.title) {
         return;
       }
-      this.$emit("addNote", { id: new Date().getTime(), title: this.title, date: this.getDate(), description: "", isImportant: false, isDone: false });
-      this.title = "";
+      NoteService.addNote(this.title).then((data) => {
+        this.$emit("addNote", data);
+        this.title = "";
+      })
     },
     getDate: function() {
       const date = new Date();

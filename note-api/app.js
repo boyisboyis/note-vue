@@ -2,6 +2,8 @@
 
 const path = require('path')
 const AutoLoad = require('fastify-autoload')
+// const dba = require('./db');
+
 
 module.exports = function (fastify, opts, next) {
   // Place here your custom code!
@@ -23,6 +25,8 @@ module.exports = function (fastify, opts, next) {
     options: Object.assign({}, opts)
   })
 
+  fastify.register(require('./db'));
+  fastify.register(require('fastify-cors'), { origin: '*' });
   // Make sure to call next when done
   next()
 }

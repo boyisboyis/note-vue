@@ -16,13 +16,16 @@
         <span class="description" v-if="description">{{ description }}</span>
       </div>
       <div class="action-wrapper">
-        <font-awesome-icon icon="trash-alt" />
+        <font-awesome-icon icon="trash-alt"  @click="onDelete" v-if="!isEdit" />
+        <font-awesome-icon icon="pencil-alt"  @click="onEdit" v-else />
       </div>
     </div>
   </NoteBox>
 </template>
 <script>
 import NoteBox from "./NoteBox";
+import NoteService from '@/service/note.service';
+import router from '@/router';
 export default {
   name: "NoteItem",
   props: {
@@ -32,6 +35,7 @@ export default {
     isImportant: Boolean,
     description: String,
     date: String,
+    isEdit: Boolean,
   },
   components: {
     NoteBox,
@@ -40,6 +44,14 @@ export default {
     splitDate: function() {
       return this.date.split("/");
     },
+    onDelete: function() {
+      NoteService.deleteNote(this.id).then(({id}) => {
+        this.$emit('delete', id);
+      })
+    },
+    onEdit: function () {
+      router.push({ path: `/edit/${this.id}`});
+    }
   },
   computed: {
     day: function() {
@@ -57,7 +69,9 @@ export default {
         return this.isDone;
       },
       set: function(isDone) {
-        this.$emit("change", { id: this.id, isDone });
+        NoteService.changeIsDone(this.id, isDone).then(() => {
+          this.$emit("change", { id: this.id, isDone });
+        })
       },
     },
   },
