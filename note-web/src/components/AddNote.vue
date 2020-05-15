@@ -4,7 +4,7 @@
       <div class="icon">
         <font-awesome-icon icon="plus" />
       </div>
-      <input placeholder="Add note" />
+      <input placeholder="Add note" v-model="title" v-on:keyup.enter="onAdd" />
     </div>
   </NoteBox>
 </template>
@@ -12,8 +12,28 @@
 import NoteBox from "./NoteBox";
 export default {
   name: "AddNote",
+  data: function() {
+    return {
+      title: "",
+    };
+  },
   components: {
     NoteBox,
+  },
+  methods: {
+    onAdd: function() {
+      if (!this.title) {
+        return;
+      }
+      this.$emit("addNote", { id: new Date().getTime(), title: this.title, date: this.getDate(), description: "", isImportant: false, isDone: false });
+      this.title = "";
+    },
+    getDate: function() {
+      const date = new Date();
+      const day = (date.getDate() < 10 ? "0" : "") + date.getDate();
+      const month = (date.getMonth() < 10 ? "0" : "") + date.getMonth();
+      return `${day}/${month}/${date.getFullYear()}`;
+    },
   },
 };
 </script>
